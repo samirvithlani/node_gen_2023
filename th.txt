@@ -1,0 +1,24 @@
+NODE JS: 
+
+javascript :- browser / clinet side
+
+server : node js
+
+MERN / MEAN
+m ->mongo db
+e -> express js --> 
+r -> react js
+n -> node js
+
+
+npm: node package manager
+node_modules : 
+package / folder --> .jsfiles... functions
+
+package.json : 
+<-- config file
+dependencies : node_modules -->enteries
+
+
+//devtools --> nodemon --> auto refresh
+// npm install nodemon -g
