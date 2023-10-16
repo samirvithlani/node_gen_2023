@@ -22,3 +22,10 @@ dependencies : node_modules -->enteries
 
 //devtools --> nodemon --> auto refresh
 // npm install nodemon -g
+
+
+ORM --> object relational mapping
+collection --> table --> mapping
+
+
+

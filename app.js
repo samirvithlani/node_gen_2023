@@ -1,28 +1,61 @@
-// console.log("Hello Node...")
-// var x = 100
-// console.log("x = " + x)
+const express = require('express')
+const app = express()
+const mongoose = require('mongoose')
+const employeeModel = require("./models/EmployeeModel")
 
-const userData = require('./users/userData')
-const fileDemo = require('./fileSystem/FileDemo')
 
-//const user = require('./users/user.js')
-//const {userName, userAge, test} = require('./users/user.js')
-//console.log("Hello from app.js file...")
-//console.log(user)
-//user()
-// console.log(user.userName)
-// console.log(user.userAge)
-// user.test()
+//GET,POST,PUT,PATCH,DELETE
+// GET - to get the data from server, browser.....
+// POST - to send the data to server
+// PUT - to update the data
+// PATCH - to update the data
+// DELETE - to delete the data
 
-// console.log(userName)
-// console.log(userAge)
-// test()
+app.get("/employee",(req,res)=>{
 
-userData.setUserData("ram",100)
-var x = userData.getUserData()
-console.log("x -->",x)
-console.log(userData.getUserData())
+    console.log("Employee API is called")
+    //res.send("Employee API is called")
+    res.status(200).json({
+        message:"Employee API is called"
+    })
+})
 
-//fileDemo.DeleteDemo()
-var a = 10
-console.log("value of a = ",a)
+app.get("/emp",(req,res)=>{
+
+
+        employeeModel.find()
+            .then((data)=>{
+            res.status(200).json({
+                employee:data,
+                message:"Employee fetched successfully"
+            })
+        })
+        .catch((err)=>{
+            res.status(500).json({
+                error:err
+            })
+        })
+
+})
+
+
+
+
+
+
+//localhost is not working after version 6
+mongoose.connect("mongodb://127.0.0.1:27017/glsnode",{
+    useNewUrlParser:true,
+    useUnifiedTopology:true
+}).then(()=>{
+    console.log("Database is connected")
+}).catch((err)=>{
+    console.log(err)
+})
+
+
+//create server....
+const PORT = 3000 // environment 
+app.listen(PORT,()=>{
+    console.log("Server is running on port ",PORT)
+})
