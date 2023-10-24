@@ -2,6 +2,45 @@ const employeeModel = require('../models/EmployeeModel.js');
 
 const addEmployee = (req,res)=>{
 
+    console.log("req body",req.body);
+    const employee = req.body;
+    const empObj = new employeeModel(employee); //Schema object
+
+    empObj.save().then((employee)=>{
+        res.status(201).json({
+            data: employee,
+            message:"employee added successfully"
+        })
+    }).catch((err)=>{
+        res.status(500).json({
+            message: err.message
+        })
+    })
+
+}
+
+const deleteEmployee = (req,res)=>{
+
+    //deleteById
+    var id = req.params.id;
+    employeeModel.findByIdAndDelete(id).then((employee)=>{
+        if(employee!=null || employee!= undefined){
+            res.status(200).json({
+                data: employee,
+                message:"employee deleted successfully"
+            })
+        }
+        else{
+            res.status(404).json({
+                data: [],
+                message:"employee not found"
+            })
+        }
+    }).catch((err)=>{
+        res.status(500).json({
+            message: err.message
+        })
+    })
 
 }
 
@@ -89,8 +128,6 @@ const getEmployeeByname = (req,res)=>{
         })
     })
 
-
-
 }
 
 
@@ -98,5 +135,6 @@ module.exports = {
     addEmployee,
     getAllEmployees,
     getEmployeeById,
-    getEmployeeByname
+    getEmployeeByname,
+    deleteEmployee
 }

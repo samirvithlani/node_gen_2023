@@ -2,7 +2,11 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 
-//localhost is not working after version 6
+//middleware
+app.use(express.json()) // body parser --> req.body
+app.use(express.urlencoded({extended:true})) // req.body
+
+
 
 //client --> app.js --> router --> controller --> [model] -->[data ] -->controller --> client
 //ROUTER FILE REQUIRE...
@@ -15,6 +19,7 @@ app.use("/employee",employeeRoutes)
 
 
 
+//localhost is not working after version 6
 mongoose.connect("mongodb://127.0.0.1:27017/glsnode",{
     useNewUrlParser:true,
     useUnifiedTopology:true
