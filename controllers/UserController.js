@@ -2,6 +2,14 @@ const userModels = require('../models/UserModel');
 
 const addUser = async(req,res)=>{
 
+    // {
+    //     "name":"ajay",
+    //     "email":"ajay@gmail.com",
+    //     "age":22,
+    //     "role":"653fac92467f9b99b1c0b652"
+    // }
+
+
     try{
         const savedUser = await userModels.create(req.body);
         if(savedUser){
