@@ -20,6 +20,9 @@ const employeeSchema = new Schema({
     type: Boolean,
     default: true,
   },
+  password: {
+    type: String,
+  }
 });
 
 //model

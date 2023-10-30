@@ -12,11 +12,14 @@ app.use(express.urlencoded({extended:true})) // req.body
 //ROUTER FILE REQUIRE...
 
 const employeeRoutes = require('./routes/EmployeeRoutes.js')
+const roleRoutes = require('./routes/RoleRoutes.js')
+const userRoutes = require('./routes/UserRoutes.js')
 
 
 //USE THE ROUTER FILE...
 app.use("/employee",employeeRoutes)
-
+app.use("/role",roleRoutes)
+app.use("/user",userRoutes)
 
 
 //localhost is not working after version 6

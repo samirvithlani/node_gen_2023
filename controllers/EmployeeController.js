@@ -130,11 +130,88 @@ const getEmployeeByname = (req,res)=>{
 
 }
 
+const updateEmployee =(req,res)=>{
+
+    //id --> req.params
+    ///data--> req.body
+    const id = req.params.id;
+    const data ={
+        name: req.body.name,
+        email: req.body.email,
+        age: req.body.age,
+    }
+
+    const savedData = employeeModel.findByIdAndUpdate(id,data)
+    savedData.then((employee)=>{
+        res.status(200).json({
+            data: employee,
+            message:"employee updated successfully"
+        })
+    }).catch((err)=>{
+        res.status(500).json({
+            message: err.message
+        })
+    })
+}
+
+const   loginEmployee = async(req,res)=>{
+
+//select * from employee where email ="" and password = "" 
+    try{
+        const data = await employeeModel.findOne({email:req.body.email,password:req.body.password})
+        if(data && data !=undefined){
+            res.status(200).json({
+                employee: data,
+                message:"employee logged in successfully"
+            })
+        }
+        else{
+            res.status(404).json({
+                data: [],
+                message:"employee not found"
+            })
+        }
+
+    }catch(err){
+        res.status(500).json({
+            message: err.message
+        })
+    }
+    
+
+
+
+
+}
+
+
+const filterEmployee = async(req,res)=>{
+
+        //req.body ,req.params,req.query
+
+        const query = req.query;
+        console.log("query",query);
+        try{
+        const data = await employeeModel.find({...query})
+        res.status(200).json({
+            data: data,
+            message:"employee filtered"
+        })
+        }catch(err){
+            res.status(500).json({
+                message: err.message
+            })
+        }
+        
+}
 
 module.exports = {
     addEmployee,
     getAllEmployees,
     getEmployeeById,
     getEmployeeByname,
-    deleteEmployee
+    deleteEmployee,
+    updateEmployee,
+    loginEmployee,
+    filterEmployee
 }
