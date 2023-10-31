@@ -14,7 +14,13 @@ const userSchema = new Schema({
   role:{
         type: Schema.Types.ObjectId,
         ref: "Role"
+  },
+  permissions: [
+    {
+    type: Schema.Types.ObjectId,
+    ref: "Permission"
   }
+]
 });
 //role
 //1 admin 

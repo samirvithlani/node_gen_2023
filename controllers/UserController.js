@@ -38,7 +38,7 @@ const getAllUsers = async(req,res)=>{
 
     //populate specfic field from ref model..
     try{
-        const users = await userModels.find().populate("role")
+        const users = await userModels.find().populate("role").populate("permissions");
         if(users && users.length>0){
             res.status(200).json({
                 data: users,
@@ -60,8 +60,50 @@ const getAllUsers = async(req,res)=>{
 
 }
 
+//PUT
+const addPermissionToUser = async(req,res)=>{
 
+    //userid --> req.body
+    //permissionid --> req.body
+    const userId = req.body.userId;
+    const permissionId = req.body.permissionId;
+    console.log(userId,permissionId);
+
+    const data = await userModels.findByIdAndUpdate(userId,{
+        $push:{
+            permissions: permissionId
+        }
+    })
+
+    res.status(200).json({
+        data: data,
+    })
+
+}
+
+const removePermissionFromUser = async(req,res)=>{
+
+    //userid --> req.body
+    //permissionid --> req.body
+    const userId = req.body.userId;
+    const permissionId = req.body.permissionId;
+    console.log(userId,permissionId);
+
+    const data = await userModels.findByIdAndUpdate(userId,{
+        $pull:{
+            permissions: permissionId
+        }
+    })
+
+    res.status(200).json({
+        data: data,
+    })
+
+}
 module.exports = {
     addUser,
-    getAllUsers
+    getAllUsers,
+    addPermissionToUser,
+    removePermissionFromUser
+
 }
