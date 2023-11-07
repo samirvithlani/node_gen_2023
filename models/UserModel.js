@@ -7,6 +7,7 @@ const userSchema = new Schema({
   },
   email: {
     type: String,
+    unique: true,
   },
   age: {
     type: Number,
@@ -20,7 +21,11 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Permission"
   }
-]
+],
+  password: {
+    type: String,
+  }
+
 });
 //role
 //1 admin 
