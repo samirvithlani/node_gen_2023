@@ -163,8 +163,10 @@ const loginuser1 = async (req, res) => {
       console.log("user....",user);
       //user data... access password from user object...
       const flag = encrypt.comparePassword(password, user.password);
+      //tokenUtil --> generateToken(user);
       if (flag) {
         res.status(200).json({
+          //token...
           data: user,
           message: "user logged in successfully",
         });

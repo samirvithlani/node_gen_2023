@@ -28,4 +28,12 @@ ORM --> object relational mapping
 collection --> table --> mapping
 
 
+FIlter only
+
+auth
+authri
+
+jwt token...
+
+
 
