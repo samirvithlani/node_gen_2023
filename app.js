@@ -1,10 +1,12 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 //middleware
 app.use(express.json()) // body parser --> req.body
 app.use(express.urlencoded({extended:true})) // req.body
+app.use(cors()) // cross origin resou
 
 
 

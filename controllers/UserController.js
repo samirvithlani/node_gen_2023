@@ -1,5 +1,6 @@
 const userModels = require("../models/UserModel");
 const encrypt = require("../util/Encrypt");
+const tokenValidation = require("../util/TokenValidation");
 
 const addUser = async (req, res) => {
   // {
@@ -67,6 +68,7 @@ const addUser1 = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   //populate specfic field from ref model..
+  //email password
   try {
     const users = await userModels
       .find()
@@ -157,17 +159,22 @@ const loginuser1 = async (req, res) => {
 
   try {
     //rahul@gmail.com
-    console.log("email...",email);
+    console.log("email...", email);
     const user = await userModels.findOne({ email: email });
     if (user) {
-      console.log("user....",user);
+      console.log("user....", user);
       //user data... access password from user object...
       const flag = encrypt.comparePassword(password, user.password);
       //tokenUtil --> generateToken(user);
       if (flag) {
+        //token get.....
+        const token = tokenValidation.generateToken(user.toObject());
+
+        console.log("token...", token); //token
+
         res.status(200).json({
           //token...
-          data: user,
+          data: token,
           message: "user logged in successfully",
         });
       } else {
@@ -175,8 +182,7 @@ const loginuser1 = async (req, res) => {
           message: "user not found",
         });
       }
-    } 
-    else {
+    } else {
       res.status(404).json({
         message: "user not found",
       });
@@ -195,5 +201,5 @@ module.exports = {
   addPermissionToUser,
   removePermissionFromUser,
   loginUser,
-  loginuser1
+  loginuser1,
 };

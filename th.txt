@@ -37,3 +37,11 @@ jwt token...
 
 
 
+
+tradinal way
+
+page --> email password  -->every database req...
+
+email ->password --> token --> database **** --> token --> every req
+
+
