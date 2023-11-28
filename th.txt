@@ -44,4 +44,6 @@ page --> email password  -->every database req...
 
 email ->password --> token --> database **** --> token --> every req
 
+file --> local system 
+google drive --> live bucket -> cloudnary --> aws s3
 
