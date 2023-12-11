@@ -11,7 +11,7 @@ const employeeSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
+    
   },
   age: {
     type: Number,
@@ -29,4 +29,4 @@ const employeeSchema = new Schema({
 // const employeeModel = mongoose.model("Employee", employeeSchema);
 // module.exports = employeeModel;
 
-module.exports = mongoose.model("Employee", employeeSchema);
+module.exports = mongoose.model("Employee1", employeeSchema);

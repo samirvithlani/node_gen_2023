@@ -12,23 +12,22 @@ const userSchema = new Schema({
   age: {
     type: Number,
   },
-  role:{
-        type: Schema.Types.ObjectId,
-        ref: "Role"
+  role: {
+    type: Schema.Types.ObjectId,
+    ref: "Role",
   },
   permissions: [
     {
-    type: Schema.Types.ObjectId,
-    ref: "Permission"
-  }
-],
+      type: Schema.Types.ObjectId,
+      ref: "Permission",
+    },
+  ],
   password: {
     type: String,
-  }
-
+  },
 });
 //role
-//1 admin 
+//1 admin
 //user
 //name email age 1
 //create table user (name,emaol.age, role inr,REFERENCE Role(id))
