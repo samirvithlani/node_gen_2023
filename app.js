@@ -29,7 +29,7 @@ app.use("/upload",uploadRoutes)
 
 
 //localhost is not working after version 6
-mongoose.connect("mongodb://127.0.0.1:27017/glsnode",{
+mongoose.connect("mongodb+srv://samir:samir@cluster0.key63fx.mongodb.net/glsnode",{
     useNewUrlParser:true,
     useUnifiedTopology:true
 }).then(()=>{
